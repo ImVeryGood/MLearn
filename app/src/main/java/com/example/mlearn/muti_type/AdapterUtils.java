@@ -1,6 +1,7 @@
 package com.example.mlearn.muti_type;
 
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +24,13 @@ import me.drakeet.multitype.ItemViewBinder;
 import me.drakeet.multitype.MultiTypeAdapter;
 
 public class AdapterUtils {
-    public static void registerAdapter(MultiTypeAdapter typeAdapter, DataGet dataGet){
+    public static void registerAdapter(Context mContext,MultiTypeAdapter typeAdapter, DataGet dataGet){
         typeAdapter.register(ModelBean.class)
                 .to(
                         new ItemMainBinder(),
                         new ItemFourBinder(),
                         new ItemADBinder(dataGet),
-                        new ItemCardBinder(),
+                        new ItemCardBinder(dataGet,mContext),
                         new ItemTitleBinder()
                 ).withClassLinker(new ClassLinker<ModelBean>() {
             @NonNull

@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/bg_ffffff_8.xml" value="0.25885416666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/rg_text_color.xml" value="0.2598958333333333" />
+        <entry key="app/src/main/res/drawable/select_draw.xml" value="0.2598958333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.125" />
         <entry key="app/src/main/res/layout/ad_layout.xml" value="0.14447463768115942" />
         <entry key="app/src/main/res/layout/age_layout.xml" value="0.165" />
         <entry key="app/src/main/res/layout/card_layout.xml" value="0.20742753623188406" />
