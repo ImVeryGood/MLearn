@@ -3,8 +3,10 @@ package com.example.mlearn;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
@@ -21,6 +23,8 @@ import android.widget.RadioGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.mlearn.muti_type.AdapterUtils;
+import com.example.mlearn.muti_type.ContentFragment;
+import com.example.mlearn.muti_type.FragmentAdapter;
 import com.example.mlearn.muti_type.bean.ButtonBean;
 
 
@@ -36,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private final String TAG = this.getClass().getSimpleName();
     private List<ButtonBean> buttonBeans;
-
+    private ViewPager mViewPager;
+    private List<Fragment> fragmentList;
+    private FragmentAdapter fragmentAdapter;
     @SuppressLint("CheckResult")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +116,10 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         recyclerView = this.findViewById(R.id.recyclerView);
         radioGroup = findViewById(R.id.rg_bottom);
+        mViewPager = findViewById(R.id.view_pager);
+        fragmentList = new ArrayList<>();
+        fragmentAdapter=new FragmentAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(fragmentAdapter);
         buttonBeans = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             ButtonBean bean = new ButtonBean();
@@ -135,8 +145,22 @@ public class MainActivity extends AppCompatActivity {
                     ViewGroup.LayoutParams.MATCH_PARENT);
             params.weight = 1;// 设置button 宽度平分
             radioGroup.addView(button, params);
+            ContentFragment contentFragment=new ContentFragment();
+            Bundle bundle=new Bundle();
+            bundle.putString("title","title="+i);
+            contentFragment.setArguments(bundle);
+            fragmentList.add(contentFragment);
+
         }
+        fragmentAdapter.setFragmentList(fragmentList);
         radioGroup.check(0);
+        mViewPager.setCurrentItem(0,false);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                mViewPager.setCurrentItem(i,false);
+            }
+        });
     }
 
 
@@ -194,7 +218,8 @@ public class MainActivity extends AppCompatActivity {
                     message.what = 1;
                     Drawable drawable1 = Glide.with(radioButton.getContext())
                             .asDrawable()
-                            .load(getDrawable(R.mipmap.img))
+                            //.load(getDrawable(R.mipmap.img))
+                            .load("https://weimai-zhihuiyiyuan.oss-cn-hangzhou.aliyuncs.com/weimai-zhihuiyiyuan/hand-hospital/2021/05/14/3451024c-1886-4d37-b2dd-cb8a50d46b9b.image/png")
                             .submit()
                             .get();
                     list.add(0, drawable1);
