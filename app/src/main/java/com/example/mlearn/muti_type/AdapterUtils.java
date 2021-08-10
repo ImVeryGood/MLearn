@@ -41,13 +41,12 @@ public class AdapterUtils {
             public Class<? extends ItemViewBinder<ModelBean, ?>> index(int position, @NonNull ModelBean modelBean) {
                 Class claZZ = null;
                 int type = modelBean.getType();
-                Log.d("TAG", "index:type= "+type);
                 switch (type) {
                     case 101:
                         claZZ = ItemADBinder.class;
                         break;
                     case 102:
-                        claZZ=ItemHeightBinder.class;
+                        claZZ=ItemTitleBinder.class;
                         break;
                     case 107:
                         claZZ = ItemCardBinder.class;
