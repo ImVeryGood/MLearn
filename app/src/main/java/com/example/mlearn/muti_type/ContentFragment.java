@@ -113,6 +113,7 @@ public class ContentFragment extends CommonFragment {
             if (i == 1) model.setType(102);
             else if (i == 2 || i == 3 || i == 4 || i == 5) model.setType(106);
             else if (i == 6 || i == 7) model.setType(107);
+            else if (i==8) model.setType(104);
             ms.add(model);
         }
     }

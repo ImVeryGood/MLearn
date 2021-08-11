@@ -2,6 +2,7 @@ package com.example.mlearn.muti_type;
 
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.mlearn.ModelBean;
 import com.example.mlearn.muti_type.holder.ItemADBinder;
 import com.example.mlearn.muti_type.holder.ItemCardBinder;
 import com.example.mlearn.muti_type.holder.ItemFourBinder;
+import com.example.mlearn.muti_type.holder.ItemHeightBinder;
 import com.example.mlearn.muti_type.holder.ItemMainBinder;
 import com.example.mlearn.muti_type.holder.ItemTitleBinder;
 
@@ -31,7 +33,8 @@ public class AdapterUtils {
                         new ItemFourBinder(),
                         new ItemADBinder(dataGet),
                         new ItemCardBinder(dataGet,mContext),
-                        new ItemTitleBinder()
+                        new ItemTitleBinder(),
+                        new ItemHeightBinder()
                 ).withClassLinker(new ClassLinker<ModelBean>() {
             @NonNull
             @Override
@@ -45,11 +48,11 @@ public class AdapterUtils {
                     case 102:
                         claZZ=ItemTitleBinder.class;
                         break;
-                    case 106:
-                        claZZ = ItemFourBinder.class;
-                        break;
                     case 107:
                         claZZ = ItemCardBinder.class;
+                        break;
+                    case 104:
+                        claZZ= ItemHeightBinder.class;
                         break;
                     default:
                         claZZ = ItemFourBinder.class;

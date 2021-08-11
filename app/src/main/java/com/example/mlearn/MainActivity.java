@@ -49,68 +49,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-        initData();
 
 
     }
 
-    private void initData() {
-        for (int i = 0; i <= 20; i++) {
-            ModelBean model = new ModelBean();
-            model.setName("Main" + i);
-            model.setAge(i);
-            if (i == 0) model.setType(101);
-            if (i == 1) model.setType(102);
-            else if (i == 2 || i == 3 || i == 4 || i == 5) model.setType(106);
-            else if (i == 6 || i == 7) model.setType(107);
-            ms.add(model);
-        }
-
-        // 初始化MultiTypeAdapter
-        MultiTypeAdapter adapter = new MultiTypeAdapter(ms);
-        /**
-         * 设置多布局
-         */
-        AdapterUtils.registerAdapter(this, adapter, new DataGet() {
-            @Override
-            public void onGetData(ModelBean itemAction) {
-                if (itemAction.getType() == 102) {
-                    int index = adapter.getItems().indexOf(itemAction);
-                    ms.get(index).setAge(1000);
-                    recyclerView.post(() -> adapter.notifyItemChanged(index));
-                } else if (itemAction.getType() == 107) {
-                    int index = adapter.getItems().indexOf(itemAction);
-                    ms.get(index).setAge(1111);
-                    recyclerView.post(() -> adapter.notifyItemChanged(index));
-                }
-
-            }
-        });
-
-        adapter.setItems(ms);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 12);
-        /**
-         * 设置单个item占据的个数
-         */
-        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int i) {
-                int type = ms.get(i).getType();
-                if (type == 101 || type == 102) {
-                    return 12;
-                } else if (type == 106) {
-                    return 3;
-                } else if (type == 107) {
-                    return 6;
-                } else {
-                    return 2;
-                }
-
-            }
-        });
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(adapter);
-    }
 
     @SuppressLint("ResourceType")
     private void initView() {
