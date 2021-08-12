@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mlearn.MainActivity;
 import com.example.mlearn.R;
 import com.example.mlearn.muti_type.MRecyclerView;
+import com.example.mlearn.view_pager.ViewPagerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +31,23 @@ public class HomeActivity extends AppCompatActivity {
         pageBean.setName("MultiType");
         pageBean.setDes("动态设施布局以及底部导航");
         list.add(pageBean);
+        PageBean pageBean2 = new PageBean();
+        pageBean2.setName("ViewPager");
+        pageBean2.setDes("viewpage example");
+        list.add(pageBean2);
         mRecyclerView.setData(list);
-        mRecyclerView.setOnItemClick((position, name) -> startActivity(new Intent(HomeActivity.this, MainActivity.class)));
+        mRecyclerView.setOnItemClick((position, name) -> {
+            switch (position){
+                case 0:
+                    startActivity(new Intent(HomeActivity.this, MainActivity.class));
+                    break;
+                case 1:
+                    startActivity(new Intent(HomeActivity.this, ViewPagerActivity.class));
+                    break;
+                default:
+
+            }
+        });
 
     }
 

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MLearn">
         <activity
+            android:name=".view_pager.ViewPagerActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
