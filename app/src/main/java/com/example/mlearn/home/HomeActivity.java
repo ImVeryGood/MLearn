@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.mlearn.MainActivity;
 import com.example.mlearn.R;
 import com.example.mlearn.muti_type.MRecyclerView;
+import com.example.mlearn.time.TimeActivity;
 import com.example.mlearn.view_pager.ViewPagerActivity;
 
 import java.util.ArrayList;
@@ -35,14 +36,21 @@ public class HomeActivity extends AppCompatActivity {
         pageBean2.setName("ViewPager");
         pageBean2.setDes("viewpage example");
         list.add(pageBean2);
+        PageBean pageBean3 = new PageBean();
+        pageBean3.setName("Time+BorderTextView");
+        pageBean3.setDes("Time BorderTextView example");
+        list.add(pageBean3);
         mRecyclerView.setData(list);
         mRecyclerView.setOnItemClick((position, name) -> {
-            switch (position){
+            switch (position) {
                 case 0:
                     startActivity(new Intent(HomeActivity.this, MainActivity.class));
                     break;
                 case 1:
                     startActivity(new Intent(HomeActivity.this, ViewPagerActivity.class));
+                    break;
+                case 2:
+                    startActivity(new Intent(HomeActivity.this, TimeActivity.class));
                     break;
                 default:
 
