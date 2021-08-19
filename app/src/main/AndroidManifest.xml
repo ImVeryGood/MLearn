@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MLearn">
         <activity
-            android:name=".home.HomeActivity"
+            android:name=".json.Gson2MapActivity"
             android:exported="true" />
         <activity
             android:name=".view_pager.ViewPagerActivity"
@@ -24,7 +24,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".json.Gson2MapActivity"
+            android:name=".home.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

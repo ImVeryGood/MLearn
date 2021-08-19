@@ -1,22 +1,14 @@
 package com.example.mlearn.json;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.mlearn.R;
-import com.example.mlearn.home.PageBean;
-import com.google.gson.Gson;
+import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONException;
+import com.example.mlearn.R;
+
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
 import java.util.Map;
 
 public class Gson2MapActivity extends AppCompatActivity {

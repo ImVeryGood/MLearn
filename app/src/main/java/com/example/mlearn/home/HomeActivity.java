@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mlearn.MainActivity;
 import com.example.mlearn.R;
+import com.example.mlearn.json.Gson2MapActivity;
 import com.example.mlearn.muti_type.MRecyclerView;
 import com.example.mlearn.time.TimeActivity;
 import com.example.mlearn.view_pager.ViewPagerActivity;
@@ -40,6 +41,11 @@ public class HomeActivity extends AppCompatActivity {
         pageBean3.setName("Time+BorderTextView");
         pageBean3.setDes("Time BorderTextView example");
         list.add(pageBean3);
+
+        PageBean pageBean4 = new PageBean();
+        pageBean4.setName("Json转Map");
+        pageBean4.setDes("读取本地Json转为Map");
+        list.add(pageBean4);
         mRecyclerView.setData(list);
         mRecyclerView.setOnItemClick((position, name) -> {
             switch (position) {
@@ -51,6 +57,9 @@ public class HomeActivity extends AppCompatActivity {
                     break;
                 case 2:
                     startActivity(new Intent(HomeActivity.this, TimeActivity.class));
+                    break;
+                case 3:
+                    startActivity(new Intent(HomeActivity.this, Gson2MapActivity.class));
                     break;
                 default:
 
