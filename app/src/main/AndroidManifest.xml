@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MLearn">
         <activity
+            android:name=".json.Gson2MapActivity"
+            android:exported="true" />
+        <activity
             android:name=".time.TimeActivity"
             android:exported="true" />
         <activity
