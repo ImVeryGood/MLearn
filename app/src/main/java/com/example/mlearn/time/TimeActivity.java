@@ -9,6 +9,8 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.mlearn.R;
+import com.example.mlearn.widget.BorderTextView;
+import com.example.mlearn.widget.TimeTextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,8 +20,9 @@ import java.util.TimeZone;
 public class TimeActivity extends AppCompatActivity {
     private SimpleDateFormat simpleDateFormat;
     private Date d1;
-    private TextView textView;
+    private BorderTextView textView;
     private TimeHandler handler;
+    private TimeTextView timeTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,15 +32,22 @@ public class TimeActivity extends AppCompatActivity {
 
     private void initView()  {
         textView = findViewById(R.id.text);
+        textView.setStrokeWidth(2);
+        textView.setStrokeColor(R.color.red);
+        textView.setCornerRadius(8);
+        textView.setTextColor(getResources().getColor(R.color.red));
         simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+8"));
         handler = new TimeHandler();
-        handler.sendEmptyMessage(0);
+       // handler.sendEmptyMessage(0);
         try {
             d1 = simpleDateFormat.parse("2021-08-11 22:44:00");
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
+        timeTextView=findViewById(R.id.time_text);
+        timeTextView.setCurrentDate(System.currentTimeMillis());
     }
 
     private class TimeHandler extends Handler {
