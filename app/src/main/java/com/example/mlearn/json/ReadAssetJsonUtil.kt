@@ -1,13 +1,13 @@
-package com.myweimai.doctor.utils.tool
+package com.example.mlearn.json
 
 import android.content.Context
 import android.util.Log
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-import com.myweimai.base.util.GsonUtil
+import org.json.JSONException
 import org.json.JSONObject
 import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStreamReader
+import java.io.UnsupportedEncodingException
 
 
 /**
@@ -19,23 +19,28 @@ import java.io.InputStreamReader
  * @UpdateRemark: 更新说明
  */
 object ReadAssetJsonUtil {
-    fun readJsonData(mContext: Context, fileName: String): String {
-        val stringBuilder = StringBuilder()
-        val assetManager = mContext.assets
-        val bufferedReader = BufferedReader(InputStreamReader(assetManager.open(fileName)))
-        while (bufferedReader.readLine() != null) {
-            val line: String = bufferedReader.readLine()
-            stringBuilder.append(line)
+
+    fun readJsonData(mContext: Context, fileName: String): JSONObject? {
+        var line: String? = null
+        var jsonObject: JSONObject? = null
+        try {
+            //打开存放在assets文件夹下面的json格式的文件并且放在文件输入流里面
+            val inputStreamReader = InputStreamReader(mContext.assets.open(fileName), "UTF-8")
+            val bufferedReader = BufferedReader(inputStreamReader)
+            val stringBuilder = java.lang.StringBuilder()
+            while (bufferedReader.readLine().also { line = it } != null) {
+                stringBuilder.append(line)
+            }
+            bufferedReader.close()
+            inputStreamReader.close()
+            jsonObject = JSONObject(stringBuilder.toString())
+        } catch (e: UnsupportedEncodingException) {
+            e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: JSONException) {
+            e.printStackTrace()
         }
-        readToMap(stringBuilder.toString())
-        return stringBuilder.toString()
+        return jsonObject
     }
-
-    fun readToMap(json:String) {
-
-        Log.d("TAG", "readToMap: 1json="+GsonUtil.toMap2(Gson().toJson("{$json}")))
-       Log.d("TAG", "readToMap: ");
-    }
-
-
 }
