@@ -12,12 +12,18 @@ import com.example.mlearn.muti_type.MRecyclerView;
 import com.example.mlearn.time.TimeActivity;
 import com.example.mlearn.view_pager.ViewPagerActivity;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     private MRecyclerView mRecyclerView;
     private List<PageBean> list;
+
+    public HomeActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         initView();
         initData();
+
     }
 
     private void initData() {
@@ -46,6 +53,10 @@ public class HomeActivity extends AppCompatActivity {
         pageBean4.setName("Json转Map");
         pageBean4.setDes("读取本地Json转为Map");
         list.add(pageBean4);
+        PageBean pageBean5 = new PageBean();
+        pageBean5.setName("Aidl");
+        pageBean5.setDes("binder");
+        list.add(pageBean5);
         mRecyclerView.setData(list);
         mRecyclerView.setOnItemClick((position, name) -> {
             switch (position) {
@@ -60,6 +71,9 @@ public class HomeActivity extends AppCompatActivity {
                     break;
                 case 3:
                     startActivity(new Intent(HomeActivity.this, Gson2MapActivity.class));
+                    break;
+                case 4:
+                    startActivity(new Intent(HomeActivity.this, ProcessMainActivity.class));
                     break;
                 default:
 
